@@ -21,7 +21,7 @@ class BochsFull < Formula
   # SDL2 Display Library
   depends_on "sdl2" => :reccommended
   # SDL Display Library
-  depends_on "sdl" => :optional
+  depends_on "sdl12-compat" => :optional
   # nogui Display Library
   # X11 Display Library
   depends_on "x11" => :optional
