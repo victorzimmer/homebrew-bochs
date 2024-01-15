@@ -5,8 +5,8 @@ class BochsFull < Formula
     desc "Bochs - Cross Platform x86 Emulator Project"
     homepage "https://bochs.sourceforge.io/"
     license "LGPL-2.1 license"
-    head "https://github.com/bochs-emu/Bochs"
-    sha256 "8c81200b3d2bf40d667d2dd8bec2b8d1b74fb01517c9e86125f44403c4c7aca5"
+    url 'https://downloads.sourceforge.net/project/bochs/bochs/2.6.2/bochs-2.6.2.tar.gz'
+    sha1 'f82ee01a52367d2a6daffa2774a1297b978f6821'
 
     option "with-debugger-internal", "Enables the Bochs internal debugger"
     option "with-debugger-gdb-stub", "Enables the Bochs GDB stub for debugging with GDB/LLDB"
