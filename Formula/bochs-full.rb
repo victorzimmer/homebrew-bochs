@@ -9,24 +9,24 @@ class BochsFull < Formula
   license "LGPL-2.1 license"
   option "with-debugger-internal", "Enables the Bochs internal debugger"
   option "with-debugger-gdb-stub", "Enables the Bochs GDB stub for debugging with GDB/LLDB"
-  # SDL2 Display Library
   option "without-sdl2", "Disables SDL2 display library"
-  depends_on "sdl2" => :reccommended
+  option "with-sdl", "Disables SDL display library"
+  option "without-nogui", "Disables nogui display library"
+  option "with-x11", "Enables X display library"
+  option "with-carbon", "Enables Carbon display library"
+  option "without-term", "Disables Term display library"
   # Build dependencies
   depends_on "pkg-config" => :build
   depends_on "libtool"
+  # SDL2 Display Library
+  depends_on "sdl2" => :reccommended
   # SDL Display Library
-  option "with-sdl", "Disables SDL display library"
   depends_on "sdl" => :optional
   # nogui Display Library
-  option "without-nogui", "Disables nogui display library"
   # X11 Display Library
-  option "with-x11", "Enables X display library"
   depends_on "x11" => :optional
   # Carbon Display Library
-  option "with-carbon", "Enables Carbon display library"
   # Term Display Library
-  option "without-term", "Disables Term display library"
   uses_from_macos "ncurses"
   def install
     args = %W[
@@ -62,9 +62,7 @@ class BochsFull < Formula
       args << "--enable-debugger"
       args << "--enable-debugger-gui"
     end
-    if build.with?("debugger-gdb-stub")
-      args << "--enable-gdb-stub"
-    end
+    args << "--enable-gdb-stub" if build.with?("debugger-gdb-stub")
     # Display libraries
     args << (build.with?("sdl") ? "--with-sdl" : "--without-sdl")
     args << (build.without?("sdl2") ? "--without-sdl2" : "--with-sdl2")
@@ -80,15 +78,15 @@ class BochsFull < Formula
   test do
     require "open3"
     (testpath/"bochsrc.txt").write <<~EOS
-    panic: action=fatal
-    error: action=report
-    info: action=ignore
-    debug: action=ignore
-    display_library: nogui
+      panic: action=fatal
+      error: action=report
+      info: action=ignore
+      debug: action=ignore
+      display_library: nogui
     EOS
     expected = <<~EOS
-    Bochs is exiting with the following message:
-    [BIOS  ] No bootable device.
+      Bochs is exiting with the following message:
+      [BIOS  ] No bootable device.
     EOS
     command = "#{bin}/bochs -qf bochsrc.txt"
     # When the debugger is enabled, bochs will stop on a breakpoint early
