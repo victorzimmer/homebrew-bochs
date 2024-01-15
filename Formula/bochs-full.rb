@@ -69,8 +69,14 @@ class BochsFull < Formula
             odie "Internal debugger and GDB stub are mutually exclusive!"
         end
 
-        args << (build.with?("debugger-internal") ? "--enable-debugger --enable-debugger-gui" : "")
-        args << (build.with?("debugger-gdb-stub") ? "--enable-gdb-stub" : "")
+        if build.with?("debugger-internal")
+            args << "--enable-debugger"
+            args << "--enable-debugger-gui"
+        end
+
+        if build.with?("debugger-gdb-stub")
+            args << "--enable-gdb-stub"
+        end
 
         # Display libraries
         args << (build.with?("sdl") ? "--with-sdl" : "--without-sdl")
