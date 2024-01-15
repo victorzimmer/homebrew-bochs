@@ -9,11 +9,12 @@ class BochsFull < Formula
   license "LGPL-2.1 license"
   option "with-debugger-internal", "Enables the Bochs internal debugger"
   option "with-debugger-gdb-stub", "Enables the Bochs GDB stub for debugging with GDB/LLDB"
-  depends_on "pkg-config" => :build
-  depends_on "libtool"
   # SDL2 Display Library
   option "without-sdl2", "Disables SDL2 display library"
   depends_on "sdl2" => :reccommended
+  # Build dependencies
+  depends_on "pkg-config" => :build
+  depends_on "libtool"
   # SDL Display Library
   option "with-sdl", "Disables SDL display library"
   depends_on "sdl" => :optional
@@ -54,7 +55,7 @@ class BochsFull < Formula
       --enable-x86-64
     ]
     # Debug support
-    if build.with?("debugger-internal") and build.with?("debugger-gdb-stub")
+    if build.with?("debugger-internal") && build.with?("debugger-gdb-stub")
       odie "Internal debugger and GDB stub are mutually exclusive!"
     end
     if build.with?("debugger-internal")
@@ -78,7 +79,6 @@ class BochsFull < Formula
 
   test do
     require "open3"
-      
     (testpath/"bochsrc.txt").write <<~EOS
     panic: action=fatal
     error: action=report
@@ -86,19 +86,15 @@ class BochsFull < Formula
     debug: action=ignore
     display_library: nogui
     EOS
-      
     expected = <<~EOS
     Bochs is exiting with the following message:
     [BIOS  ] No bootable device.
     EOS
-      
     command = "#{bin}/bochs -qf bochsrc.txt"
-      
     # When the debugger is enabled, bochs will stop on a breakpoint early
     # during boot. We can pass in a command file to continue when it is hit.
     (testpath/"debugger.txt").write("c\n")
     command << " -rc debugger.txt"
-    
     _, stderr, = Open3.capture3(command)
     assert_match(expected, stderr)
   end
