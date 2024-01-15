@@ -5,7 +5,7 @@
 
 class BochsFull < Formula
   desc "Bochs - Cross Platform x86 Emulator Project"
-  homepage ""https://bochs.sourceforge.io/
+  homepage "https://bochs.sourceforge.io/"
   license "LGPL-2.1 license"
   head "https://github.com/bochs-emu/Bochs"
 
