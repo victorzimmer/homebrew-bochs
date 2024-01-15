@@ -6,7 +6,7 @@ class BochsFull < Formula
   homepage "https://bochs.sourceforge.io/"
   url "https://downloads.sourceforge.net/project/bochs/bochs/2.7/bochs-2.7.tar.gz"
   sha256 "a010ab1bfdc72ac5a08d2e2412cd471c0febd66af1d9349bc0d796879de5b17a"
-  license "LGPL-2.1 license"
+  license "LGPL-2.1-or-later"
   option "with-debugger-internal", "Enables the Bochs internal debugger"
   option "with-debugger-gdb-stub", "Enables the Bochs GDB stub for debugging with GDB/LLDB"
   option "without-sdl2", "Disables SDL2 display library"
