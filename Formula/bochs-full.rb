@@ -19,12 +19,12 @@ class BochsFull < Formula
   depends_on "pkg-config" => :build
   depends_on "libtool"
   # SDL2 Display Library
-  depends_on "sdl2" => :reccommended
+  depends_on "sdl2"
   # SDL Display Library
   depends_on "sdl12-compat" => :optional
   # nogui Display Library
   # X11 Display Library
-  depends_on "x11" => :optional
+  depends_on "xorg-server" => :optional
   # Carbon Display Library
   # Term Display Library
   uses_from_macos "ncurses"
