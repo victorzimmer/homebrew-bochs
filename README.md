@@ -1,3 +1,6 @@
+# Repository moved
+This repository has been moved to [uit-inf-2201-s24/homebrew-bochs](https://github.com/uit-inf-2201-s24/homebrew-bochs)
+
 # Bochs (with options)
 This repository is a tap for [Homebrew](https://brew.sh) for [Bochs](https://bochs.sourceforge.io) with options. If all you need is a basic Bochs installation it is available in homebrew-core and this tap isn't needed.  
 
