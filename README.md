@@ -6,7 +6,7 @@ To install without options use:
 `brew install victorzimmer/bochs/bochs-full`
 
 To install using options use:
-`brew install victorzimmer/bochs/bochs-full --with-debugger-gdb-stub --with-x11`
+`brew install victorzimmer/bochs/bochs-full --with-debugger-gdb-stub --with-x11` of course replacing with any options use desire.
 
 ## What options are available for the formula?
 | Option                   | Description                                                                          |
